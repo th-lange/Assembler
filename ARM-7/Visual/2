@@ -1,0 +1,8 @@
+primes	DCD		1,2,3,4,5
+		
+		LDR		R0, =primes
+		LDR		R1, [R0]
+		
+		LDR		R0, =0xBEEF
+		LSL		R1, R0, #4
+		LSR		R2, R0, #8
