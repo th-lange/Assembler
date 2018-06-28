@@ -9,10 +9,16 @@
 ;
 ;
 ;   Build Commands:
-;       nasm -f elf -g -F darf HelloWrold.asm
+;       nasm -f elf -g -F dwarf HelloWrold.asm
 ;       ld -m elf_i386 -o HelloWorld helloWorld.o
 ;
-
+;   The current setup will resutl in register position switching:
+;   (gdb) info registers
+;    eax            0x5a595857  1515804759
+;    ebx            0x5857      22615
+;    ecx            0x5758      22360
+;   .....
+;    eip            0x804806d   0x804806d <_start+13>
 
 SECTION .data
 
@@ -24,17 +30,14 @@ SECTION .text
 global _start
 
 _start:
-    nop                 ; LITTLE ENDIAN PLAYS
-    mov eax, 0FFEEDDCCh ; we write "11111111111011101101110111001100" to EAX
-                        ; LITTLE_ENDIAN: CC DD EE FF
-    mov bx, ax          ; we mov the "upper" half to bx: EE FF
-                        ; this should result in bx: "1111111111101110" (or better: "1110111011111111")
+    nop             ; start of code
+    mov eax, 5A595857h
+    mov bx, ax              ; moves last bytes to bx
+                            ; resulting in the least sign. bytes in eax beeing set
+    mov ch, bl              ; moving lowest byte from bx to second least in cx
+    mov cl, bh              ; mowing second lowest byte from bx least sign. in cx
 
-    mov ch, bl          ; this moves FF to ch
-    mov cl, bh          ; this moves EE to cl
-
-                        ; Result is: cx: FF EE
     mov eax, 1
     mov ebx, 0
-    int 80H
-    nop
+    int 80h
+    nop             ; end of code
