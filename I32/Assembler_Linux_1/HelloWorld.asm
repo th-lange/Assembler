@@ -8,7 +8,7 @@
 ;
 ;
 ;   Build Commands:
-;       nasm -f elf -g -F stabs HelloWrold.asm
+;       nasm -f elf -g -F dwarf HelloWrold.asm
 ;       ld -m elf_i386 -o HelloWorld helloWorld.o
 ;
 
