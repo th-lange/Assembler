@@ -25,9 +25,8 @@ global _start
 
 _start:
     nop                 ; LITTLE ENDIAN PLAYS
-    mov eax, 0FFEEDDCCh ; we write "11111111111011101101110111001100" to EAX
-                        ; LITTLE_ENDIAN: CC DD EE FF
-    mov bx, ax          ; we mov the "upper" half to bx: EE FF
+    mov eax, 0FFFEFDFCh ; we write "11111111111111101111110111111100" to EAX
+    mov bx, ax          ; we mov the "lower" half to bx: FDFC
                         ; this should result in bx: "1111111111101110" (or better: "1110111011111111")
 
     mov ch, bl          ; this moves FF to ch
