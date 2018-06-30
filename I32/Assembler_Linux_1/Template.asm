@@ -1,11 +1,16 @@
 ;
-;   Executable name:        HelloWorld
+;   Executable name:        ADD HERE
 ;   Version:                1
-;   Created date:           19/06/2018
-;   Last update:            19/06/2018
+;   Created date:           ADD HERE
+;   Last update:            ADD HERE
 ;   Author:                 Thomas Lange
-;   Altered copy from:      Jeff Duntmann
-;   Description:            Simple CLI Programm to write to SysOut
+;   Status:                 TODO
+;
+;   Description:            ADD NAME HERE
+;
+;   Instructions Used:
+;
+;   Learned/Missconceptions/Errors:
 ;
 ;
 ;   Build Commands:
