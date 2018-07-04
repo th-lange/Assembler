@@ -21,5 +21,14 @@ UpperCase: UpperCase.asm
 UpperCaseClean:
 	rm -f UpperCase
 
-clean: SwitchBufferClean HelloWorldClean UpperCaseClean
+ToUpper: ToUpper.asm ToUpper2.asm
+	nasm -f elf -g -F dwarf -o ToUpper.o ToUpper.asm
+	ld -m elf_i386 -o ToUpper ToUpper.o
+	nasm -f elf -g -F dwarf -o ToUpper2.o ToUpper2.asm
+	ld -m elf_i386 -o ToUpper2 ToUpper2.o
+
+ToUpperClean:
+	rm -f ToUpper ToUpper2
+
+clean: SwitchBufferClean HelloWorldClean UpperCaseClean ToUpperClean
 	rm -f *.o
