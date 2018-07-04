@@ -1,8 +1,7 @@
 ;
-;   Executable name:        ADD HERE
 ;   Version:                1
-;   Created date:           ADD HERE
-;   Last update:            ADD HERE
+;   Created date:           {DATE}
+;   Last update:            {DATE}
 ;   Author:                 Thomas Lange
 ;   Status:                 TODO
 ;

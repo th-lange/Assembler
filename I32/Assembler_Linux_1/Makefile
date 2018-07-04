@@ -30,5 +30,12 @@ ToUpper: ToUpper.asm ToUpper2.asm
 ToUpperClean:
 	rm -f ToUpper ToUpper2
 
-clean: SwitchBufferClean HelloWorldClean UpperCaseClean ToUpperClean
+ToHexString: ToHexString.asm
+	nasm -f elf -g -F dwarf ToHexString.asm
+	ld -m elf_i386 -o ToHexString ToHexString.o
+
+ToHexStringClean:
+	rm -f ToHexString
+
+clean: SwitchBufferClean HelloWorldClean UpperCaseClean ToUpperClean ToHexStringClean
 	rm -f *.o
