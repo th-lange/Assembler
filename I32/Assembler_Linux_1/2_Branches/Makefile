@@ -10,6 +10,10 @@ Copy: Copy.asm
 	nasm -f elf -g -F dwarf Copy.asm
 	ld -m elf_i386 -o Copy Copy.o
 
+Copy2: Copy2.asm
+	nasm -f elf -g -F dwarf Copy2.asm
+	ld -m elf_i386 -o Copy2 Copy2.o
+
 Base64: Base64.asm
 	nasm -f elf -g -F dwarf Base64.asm
 	ld -m elf_i386 -o Base64 Base64.o
