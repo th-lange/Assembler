@@ -23,4 +23,4 @@ Base64: Base64.asm
 	ld -m elf_i386 -o Base64 Base64.o
 
 clean:
-	rm -rf *.o Base64 Branches2 Branches1 Copy
+	rm -rf *.o Base64 Branches2 Branches1 Copy Test Copy2
