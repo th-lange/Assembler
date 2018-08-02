@@ -20,18 +20,13 @@ global _start
 
 _start:
     nop             ; start of code
-    mov     eax, 'ABCD'
+    mov     eax, 'ABC'
     mov     ebx, BASE_64_MAP
-    mov     edx, eax
     nop
 
     call Mod
-    call Mod
-    call Mod
-    call Mod
 
     mov [BUFFER_OUT_NAME], eax
-
     mov ecx, BUFFER_OUT_NAME
     mov edx, 4
     call Print
@@ -44,21 +39,32 @@ Exit:
     int     80h
     nop             ; end of code
 
-
+;==============================================================================
+; BASE_64 Encode first 3 Bytes of EAX
+;   IN: eax 3 Bytes (or more, rest ignored)
+;       ebx Location of translation table
+;   OUT: eax 4 Byte translation
+;==============================================================================
 
 Mod:
+    push    ecx
+    push    edx
+;   Preparation of Segment
+    mov     edx, eax        ; we copy the target
+    xor     eax, eax
+    bswap   edx             ; we change endianness to big endian
+    ror     edx, 26          ; we move to the first segment
+    mov     ecx, 4
+.mod:
     mov     al, dl
     and     al, 03fh
     xlat
-    ror     edx, 6
-    ror     eax, 1
-    ror     eax, 1
-    ror     eax, 1
-    ror     eax, 1
-    ror     eax, 1
-    ror     eax, 1
-    ror     eax, 1
-    ror     eax, 1
+    ror     eax, 8
+    rol     edx, 6
+    sub     ecx, 1
+    jnz     .mod
+    pop     edx
+    pop     ecx
     ret
 
 Print:
